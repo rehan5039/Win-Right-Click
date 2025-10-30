@@ -138,6 +138,12 @@ Use the matching files in `Remove/`:
 - `remove_power_controls_menu.reg`
 - `remove_ai_tools_menu.reg`
 - `remove_wipe_free_space_menu.reg`
+- `remove_batch_rename_menu.reg`
+- `remove_count_items_menu.reg`
+- `remove_create_shortcut_here_menu.reg`
+- `remove_folder_size_menu.reg`
+- `remove_symlink_junction_menu.reg`
+- `remove_run_python_menu.reg`
 
 ## Safety first
 
@@ -146,3 +152,14 @@ Use the matching files in `Remove/`:
 - Proceed only if you’re comfortable editing the Windows Registry.
 
 ---
+
+## Short Hindi guide (छोटा मार्गदर्शन)
+
+- जो फ़ीचर चाहिए, उसका `.reg` फाइल डबल‑क्लिक करें → Yes/OK।
+- हटाने के लिए `Remove` फ़ोल्डर में उसी का `Remove_*.reg` चलाएं।
+- Windows Terminal चाहिए तो पहले Microsoft Store से इंस्टॉल करें (तभी `wt` काम करेगा)।
+- Safe Mode वाले विकल्प तुरंत रीबूट कराते हैं—पहले काम सेव कर लें।
+
+---
+
+If you want a combined installer/uninstaller or screenshots, open an issue and I can add them. Happy tweaking! 🎯
