@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\ExplorerView]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_show_hidden]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_hide_hidden]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_show_ext]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_hide_ext]

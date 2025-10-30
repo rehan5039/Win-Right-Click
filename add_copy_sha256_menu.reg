@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\CopySHA256]
+@="Copy SHA256 checksum"
+"Icon"="shell32.dll,-16711"
+
+[HKEY_CLASSES_ROOT\*\shell\CopySHA256\command]
+@="powershell -NoP -Command \"$h=Get-FileHash -Algorithm SHA256 -LiteralPath '%1'; Set-Clipboard -Value ($h.Hash.ToUpper())\""

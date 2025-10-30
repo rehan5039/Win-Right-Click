@@ -1,0 +1,25 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenInWindowsTerminalAdmin]
+@="Open in Windows Terminal (Admin)"
+"Icon"="ms-resource:AppName"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenInWindowsTerminalAdmin\command]
+@="powershell -Command \"Start-Process wt -ArgumentList '-d','%V' -Verb RunAs\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenInWindowsTerminalAdmin]
+@="Open in Windows Terminal (Admin)"
+"Icon"="ms-resource:AppName"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenInWindowsTerminalAdmin\command]
+@="powershell -Command \"Start-Process wt -ArgumentList '-d','%V' -Verb RunAs\""
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenInWindowsTerminalAdmin]
+@="Open in Windows Terminal (Admin)"
+"Icon"="ms-resource:AppName"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenInWindowsTerminalAdmin\command]
+@="powershell -Command \"Start-Process wt -ArgumentList '-d','%V' -Verb RunAs\""

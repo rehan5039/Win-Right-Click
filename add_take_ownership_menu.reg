@@ -1,0 +1,19 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\TakeOwnership]
+@="Take Ownership"
+"HasLUAShield"=""
+"Icon"="imageres.dll,-102"
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\*\shell\TakeOwnership\command]
+@="powershell -Command \"Start-Process cmd -ArgumentList '/c takeown /f \"\"%1\"\" /a && icacls \"\"%1\"\" /grant Administrators:F' -Verb RunAs\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnership]
+@="Take Ownership"
+"HasLUAShield"=""
+"Icon"="imageres.dll,-102"
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\TakeOwnership\command]
+@="powershell -Command \"Start-Process cmd -ArgumentList '/c takeown /f \"\"%1\"\" /a /r /d y && icacls \"\"%1\"\" /grant Administrators:F /t' -Verb RunAs\""

@@ -1,0 +1,34 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\ExplorerView]
+@="Explorer View"
+"SubCommands"="exp_show_hidden;exp_hide_hidden;exp_show_ext;exp_hide_ext"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_show_hidden]
+@="Show hidden files"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_show_hidden\command]
+@="cmd.exe /c reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced /v Hidden /t REG_DWORD /d 1 /f"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_hide_hidden]
+@="Hide hidden files"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_hide_hidden\command]
+@="cmd.exe /c reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced /v Hidden /t REG_DWORD /d 2 /f"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_show_ext]
+@="Show file extensions"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_show_ext\command]
+@="cmd.exe /c reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced /v HideFileExt /t REG_DWORD /d 0 /f"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_hide_ext]
+@="Hide file extensions"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\exp_hide_ext\command]
+@="cmd.exe /c reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced /v HideFileExt /t REG_DWORD /d 1 /f"

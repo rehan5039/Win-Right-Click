@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\RestartExplorer]
+@="Restart Explorer"
+"Icon"="explorer.exe"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\RestartExplorer\command]
+@="cmd.exe /c taskkill /f /im explorer.exe & start explorer.exe"

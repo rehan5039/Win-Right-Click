@@ -1,0 +1,28 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenPowerShellHereAsAdmin]
+@="Open PowerShell here as administrator"
+"Extended"=-
+"Icon"="imageres.dll,-5324"
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenPowerShellHereAsAdmin\command]
+@="powershell -Command \"Start-Process PowerShell -Verb RunAs -ArgumentList '-NoExit','-Command','Set-Location -LiteralPath ''%V'''\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenPowerShellHereAsAdmin]
+@="Open PowerShell here as administrator"
+"Extended"=-
+"Icon"="imageres.dll,-5324"
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenPowerShellHereAsAdmin\command]
+@="powershell -Command \"Start-Process PowerShell -Verb RunAs -ArgumentList '-NoExit','-Command','Set-Location -LiteralPath ''%V'''\""
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenPowerShellHereAsAdmin]
+@="Open PowerShell here as administrator"
+"Extended"=-
+"Icon"="imageres.dll,-5324"
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenPowerShellHereAsAdmin\command]
+@="powershell -Command \"Start-Process PowerShell -Verb RunAs -ArgumentList '-NoExit','-Command','Set-Location -LiteralPath ''%V'''\""

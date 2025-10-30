@@ -1,0 +1,18 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\CopyFolderPath]
+@="Copy folder path"
+"Icon"="imageres.dll,-5302"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\CopyFolderPath\command]
+@="powershell -NoP -Command \"Set-Clipboard -Value '%V'\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\CopyFolderPath]
+@="Copy folder path"
+"Icon"="imageres.dll,-5302"
+"Extended"=-
+"NoWorkingDirectory"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\CopyFolderPath\command]
+@="powershell -NoP -Command \"Set-Clipboard -Value '%V'\""

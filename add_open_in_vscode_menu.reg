@@ -1,0 +1,25 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenInVSCode]
+@="Open in VS Code"
+"Icon"="Code.exe"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenInVSCode\command]
+@="code -n \"%V\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenInVSCode]
+@="Open in VS Code"
+"Icon"="Code.exe"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenInVSCode\command]
+@="code -n \"%V\""
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenInVSCode]
+@="Open in VS Code"
+"Icon"="Code.exe"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenInVSCode\command]
+@="code -n \"%V\""
