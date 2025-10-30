@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\CopyFileSize]
+@="Copy file size"
+"Icon"="imageres.dll,-5347"
+
+[HKEY_CLASSES_ROOT\*\shell\CopyFileSize\command]
+@="powershell -NoProfile -Command \"$f=Get-Item -LiteralPath '%1' -ErrorAction SilentlyContinue; if($f){ $mb=[math]::Round($f.Length/1MB,3); Set-Clipboard -Value (\"$($f.Length) bytes ($mb MB)\"); }\""

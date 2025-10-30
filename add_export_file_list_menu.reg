@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\ExportFileList]
+@="Export File List"
+"SubCommands"="export_txt;export_csv"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\export_txt]
+@="Export to filelist.txt"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\export_txt\command]
+@="powershell -NoProfile -Command \"$p='%V'; $out=Join-Path $p 'filelist.txt'; Get-ChildItem -LiteralPath $p -Force | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize | Out-String | Set-Content -LiteralPath $out; Start-Process explorer $p\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\export_csv]
+@="Export to filelist.csv"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\export_csv\command]
+@="powershell -NoProfile -Command \"$p='%V'; $out=Join-Path $p 'filelist.csv'; Get-ChildItem -LiteralPath $p -Force | Select-Object Name,Length,LastWriteTime,FullName | Export-Csv -NoTypeInformation -LiteralPath $out; Start-Process explorer $p\""

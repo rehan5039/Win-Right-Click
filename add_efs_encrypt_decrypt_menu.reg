@@ -1,0 +1,39 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\EFS]
+@="Encrypt/Decrypt (EFS)"
+"SubCommands"="efs_enc_file;efs_dec_file"
+"Icon"="imageres.dll,-16710"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_enc_file]
+@="Encrypt file (EFS)"
+"Icon"="imageres.dll,-16710"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_enc_file\command]
+@="cmd.exe /c cipher /e \"%1\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_dec_file]
+@="Decrypt file (EFS)"
+"Icon"="imageres.dll,-16710"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_dec_file\command]
+@="cmd.exe /c cipher /d \"%1\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\EFS]
+@="Encrypt/Decrypt (EFS)"
+"SubCommands"="efs_enc_dir;efs_dec_dir"
+"Icon"="imageres.dll,-16710"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_enc_dir]
+@="Encrypt folder (EFS, recursive)"
+"Icon"="imageres.dll,-16710"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_enc_dir\command]
+@="cmd.exe /c cipher /e /s:\"%1\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_dec_dir]
+@="Decrypt folder (EFS, recursive)"
+"Icon"="imageres.dll,-16710"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\efs_dec_dir\command]
+@="cmd.exe /c cipher /d /s:\"%1\""

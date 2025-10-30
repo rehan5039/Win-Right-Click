@@ -36,6 +36,18 @@ Add handy options to the File Explorer right‑click menu on Windows 10/11: open
 - `add_open_with_notepad.reg` — Adds "Open with Notepad" for any file.
 - `add_copy_sha256_menu.reg` — Adds "Copy SHA256 checksum" for a selected file (uses PowerShell Get-FileHash).
 - `add_explorer_view_menu.reg` — Adds an "Explorer View" submenu with: Show/Hide hidden files, Show/Hide file extensions.
+- `add_export_file_list_menu.reg` — Export current folder listing to filelist.txt or filelist.csv.
+- `add_run_custom_scripts_menu.reg` — "Run Custom Script" submenu to invoke your own batch/PowerShell scripts (edit paths inside the .reg).
+- `add_run_as_admin_anyfile.reg` — Adds "Run file as administrator" for any file type via elevation.
+- `add_efs_encrypt_decrypt_menu.reg` — Encrypt/Decrypt files and folders using EFS (NTFS only, Pro/Enterprise).
+- `add_check_signature_menu.reg` — Check Authenticode signature and show publisher.
+- `add_set_as_wallpaper_menu.reg` — Set image as desktop background.
+- `add_copy_file_size_menu.reg` — Copy file size (bytes and MB) to clipboard.
+- `add_run_disk_cleanup_menu.reg` — Launch Disk Cleanup.
+- `add_open_task_manager_menu.reg` — Open Task Manager from background menu.
+- `add_power_controls_menu.reg` — Power submenu: Shutdown, Restart, Sleep, Hibernate, Lock.
+- `add_ai_tools_menu.reg` — AI helpers: Ask Copilot about file, Summarize file (opens Copilot), OCR via Tesseract to clipboard.
+- `add_wipe_free_space_menu.reg` — Securely wipe free space on the current drive using `cipher /w` (heavy and irreversible; Shift+Right‑Click to reveal).
 - `Terminal Option.txt` — Extra menu variants (templates) for Command Prompt, PowerShell, Windows Terminal, and admin versions. Copy a block to a new `.reg` file and import if you want these alternatives.
 - `Remove/` — Contains matching removal scripts for each feature (e.g., `Remove_Open_Terminal_window_here.reg`). Run to cleanly uninstall.
 
@@ -63,6 +75,10 @@ reg import "Remove\Remove_Open_Terminal_window_here.reg"
 - Windows Terminal entries require Windows Terminal (Microsoft Store) so the `wt` command is available. If `wt` isn’t recognized, install it or use the full path to `wt.exe`.
 - VS Code entry requires Code CLI (`code`) available in PATH (VS Code → Command Palette → “Shell Command: Install 'code' command in PATH”).
 - Git Bash entry assumes Git for Windows is installed to `C:\\Program Files\\Git`. If different, edit the `.reg` path accordingly.
+- Defender toggle: May be blocked by Windows Security Tamper Protection; turn that off first if needed. Uses `Set-MpPreference -DisableRealtimeMonitoring` and related flags; admin required.
+- EFS: Works on NTFS volumes and editions that support EFS (Pro/Enterprise). Keep certificates backed up. See `cipher /?`.
+- Secure wipe: Uses `cipher /w:<drive>` to overwrite free space. This is slow (can take hours) and cannot be undone. The menu is marked as Extended (hold Shift while right‑clicking) and shows a UAC prompt by design—use only when absolutely needed.
+- OCR: Requires Tesseract at `C:\\Program Files\\Tesseract-OCR\\tesseract.exe` or edit the path.
 - Safe Mode entries execute `bcdedit` and then reboot immediately. Save your work before clicking.
 - "Kill tasks" entries may terminate apps without saving—use carefully. The "unresponsive only" option is safer.
 - "Take Ownership" changes file/folder ACLs to grant the local Administrators group full control. Use only when needed and understand the security impact.
@@ -110,6 +126,18 @@ Use the matching files in `Remove/`:
 - `remove_open_with_notepad.reg`
 - `remove_copy_sha256_menu.reg`
 - `remove_explorer_view_menu.reg`
+- `remove_export_file_list_menu.reg`
+- `remove_run_custom_scripts_menu.reg`
+- `remove_run_as_admin_anyfile.reg`
+- `remove_efs_encrypt_decrypt_menu.reg`
+- `remove_check_signature_menu.reg`
+- `remove_set_as_wallpaper_menu.reg`
+- `remove_copy_file_size_menu.reg`
+- `remove_run_disk_cleanup_menu.reg`
+- `remove_open_task_manager_menu.reg`
+- `remove_power_controls_menu.reg`
+- `remove_ai_tools_menu.reg`
+- `remove_wipe_free_space_menu.reg`
 
 ## Safety first
 

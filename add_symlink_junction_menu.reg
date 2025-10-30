@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Links]
+@="Create Link Here"
+"SubCommands"="mklink_file;mklink_junction"
+"Icon"="imageres.dll,-5308"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\mklink_file]
+@="Create symbolic link (file)"
+"Icon"="imageres.dll,-5308"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\mklink_file\command]
+@="powershell -Command \"Start-Process cmd -Verb RunAs -ArgumentList '/c','set /p T=Target file path: ^>^> ','&','set /p N=Link name (with extension): ^>^> ','&','cd /d','%V','&','mklink','\"%N\"','\"%T\"'\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\mklink_junction]
+@="Create junction (folder)"
+"Icon"="imageres.dll,-5308"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\mklink_junction\command]
+@="powershell -Command \"Start-Process cmd -Verb RunAs -ArgumentList '/c','set /p T=Target folder path: ^>^> ','&','set /p N=Link folder name: ^>^> ','&','cd /d','%V','&','mklink','/J','\"%N\"','\"%T\"'\""

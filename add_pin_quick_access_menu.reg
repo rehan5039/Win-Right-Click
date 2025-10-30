@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\PinToQuickAccess]
+@="Pin to Quick Access"
+"Icon"="imageres.dll,-5412"
+
+[HKEY_CLASSES_ROOT\*\shell\PinToQuickAccess\command]
+@="powershell -NoProfile -Command \"$p='%1'; $app=New-Object -ComObject Shell.Application; $dir=Split-Path -LiteralPath $p -Parent; $leaf=Split-Path -LiteralPath $p -Leaf; $folder=$app.Namespace($dir); $item=$folder.ParseName($leaf); if($item){$item.InvokeVerb('pintohome')}\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\PinFolderToQuickAccess]
+@="Pin folder to Quick Access"
+"Icon"="imageres.dll,-5412"
+
+[HKEY_CLASSES_ROOT\Directory\shell\PinFolderToQuickAccess\command]
+@="powershell -NoProfile -Command \"$p='%1'; $app=New-Object -ComObject Shell.Application; $dir=Split-Path -LiteralPath $p -Parent; $leaf=Split-Path -LiteralPath $p -Leaf; $folder=$app.Namespace($dir); $item=$folder.ParseName($leaf); if($item){$item.InvokeVerb('pintohome')}\""

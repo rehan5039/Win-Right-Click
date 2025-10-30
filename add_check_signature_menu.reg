@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\CheckSignature]
+@="Check File Signature"
+"Icon"="imageres.dll,-103"
+
+[HKEY_CLASSES_ROOT\*\shell\CheckSignature\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $s=Get-AuthenticodeSignature -LiteralPath '%1' -ErrorAction SilentlyContinue; $msg=if($s){ 'Status: ' + $s.Status + (if($s.SignerCertificate){'`nPublisher: ' + $s.SignerCertificate.Subject}else{''}) } else { 'No signature info.'}; [System.Windows.MessageBox]::Show($msg,'Signature')\""

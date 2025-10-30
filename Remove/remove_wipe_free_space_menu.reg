@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\*\shell\SecureWipeFreeSpace]
+[-HKEY_CLASSES_ROOT\Directory\shell\SecureWipeFreeSpace]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\SecureWipeFreeSpace]
+[-HKEY_CLASSES_ROOT\Drive\shell\SecureWipeFreeSpace]

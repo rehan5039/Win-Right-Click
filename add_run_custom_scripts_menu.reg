@@ -1,0 +1,22 @@
+Windows Registry Editor Version 5.00
+
+; Edit the paths below to your own scripts before importing
+
+[HKEY_CLASSES_ROOT\*\shell\CustomScripts]
+@="Run Custom Script"
+"SubCommands"="run_custom_batch;run_custom_ps1"
+"Icon"="powershell.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\run_custom_batch]
+@="Run batch script"
+"Icon"="cmd.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\run_custom_batch\command]
+@="cmd.exe /c \"\"%USERPROFILE%\\Documents\\custom-scripts\\run.cmd\" \"%1\"\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\run_custom_ps1]
+@="Run PowerShell script"
+"Icon"="powershell.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\run_custom_ps1\command]
+@="powershell -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\Documents\\custom-scripts\\run.ps1\" -Path \"%1\""

@@ -1,0 +1,44 @@
+Windows Registry Editor Version 5.00
+
+; Securely wipe free space on the drive of the selected item or current folder.
+; WARNING: This overwrites all free space and can take a long time. Use with caution.
+
+; For files
+[HKEY_CLASSES_ROOT\*\shell\SecureWipeFreeSpace]
+"MUIVerb"="Wipe Free Space on This Drive (Secure)"
+"Icon"="imageres.dll,-54"
+"HasLUAShield"=""
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\*\shell\SecureWipeFreeSpace\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command \"Add-Type -AssemblyName PresentationFramework;$p='%1';try{$it=Get-Item -LiteralPath $p -ErrorAction Stop;$dir=($it -is [IO.FileInfo])?$it.DirectoryName:$it.FullName}catch{$dir=$p};$root=(Get-Item -LiteralPath $dir).PSDrive.Root;$res=[System.Windows.MessageBox]::Show('This will overwrite all free space on drive '+$root+'. It can take a long time and cannot be undone. Continue?','Secure Wipe','YesNo','Warning');if($res -ne 'Yes'){exit 0};Start-Process -Verb RunAs cmd.exe '/k','cipher','/w:' + $root\""
+
+; For folders
+[HKEY_CLASSES_ROOT\Directory\shell\SecureWipeFreeSpace]
+"MUIVerb"="Wipe Free Space on This Drive (Secure)"
+"Icon"="imageres.dll,-54"
+"HasLUAShield"=""
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\Directory\shell\SecureWipeFreeSpace\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command \"Add-Type -AssemblyName PresentationFramework;$p='%1';try{$it=Get-Item -LiteralPath $p -ErrorAction Stop;$dir=($it -is [IO.FileInfo])?$it.DirectoryName:$it.FullName}catch{$dir=$p};$root=(Get-Item -LiteralPath $dir).PSDrive.Root;$res=[System.Windows.MessageBox]::Show('This will overwrite all free space on drive '+$root+'. It can take a long time and cannot be undone. Continue?','Secure Wipe','YesNo','Warning');if($res -ne 'Yes'){exit 0};Start-Process -Verb RunAs cmd.exe '/k','cipher','/w:' + $root\""
+
+; On folder background
+[HKEY_CLASSES_ROOT\Directory\Background\shell\SecureWipeFreeSpace]
+"MUIVerb"="Wipe Free Space on This Drive (Secure)"
+"Icon"="imageres.dll,-54"
+"HasLUAShield"=""
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\SecureWipeFreeSpace\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command \"Add-Type -AssemblyName PresentationFramework;$p='%V';try{$it=Get-Item -LiteralPath $p -ErrorAction Stop;$dir=($it -is [IO.FileInfo])?$it.DirectoryName:$it.FullName}catch{$dir=$p};$root=(Get-Item -LiteralPath $dir).PSDrive.Root;$res=[System.Windows.MessageBox]::Show('This will overwrite all free space on drive '+$root+'. It can take a long time and cannot be undone. Continue?','Secure Wipe','YesNo','Warning');if($res -ne 'Yes'){exit 0};Start-Process -Verb RunAs cmd.exe '/k','cipher','/w:' + $root\""
+
+; For drives directly
+[HKEY_CLASSES_ROOT\Drive\shell\SecureWipeFreeSpace]
+"MUIVerb"="Wipe Free Space on This Drive (Secure)"
+"Icon"="imageres.dll,-54"
+"HasLUAShield"=""
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\Drive\shell\SecureWipeFreeSpace\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command \"Add-Type -AssemblyName PresentationFramework;$p='%1';try{$it=Get-Item -LiteralPath $p -ErrorAction Stop;$dir=($it -is [IO.FileInfo])?$it.DirectoryName:$it.FullName}catch{$dir=$p};$root=(Get-Item -LiteralPath $dir).PSDrive.Root;$res=[System.Windows.MessageBox]::Show('This will overwrite all free space on drive '+$root+'. It can take a long time and cannot be undone. Continue?','Secure Wipe','YesNo','Warning');if($res -ne 'Yes'){exit 0};Start-Process -Verb RunAs cmd.exe '/k','cipher','/w:' + $root\""

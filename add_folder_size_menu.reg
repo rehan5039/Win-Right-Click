@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\FolderSize]
+@="Calculate Folder Size"
+"Icon"="imageres.dll,-5360"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\FolderSize\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $p='%V'; $size=(Get-ChildItem -LiteralPath $p -Recurse -Force -File | Measure-Object -Sum Length).Sum; $sizeMB=[math]::Round($size/1MB,2); $sizeGB=[math]::Round($size/1GB,2); [System.Windows.MessageBox]::Show(\"MB: $sizeMB`nGB: $sizeGB\", \"Folder size for $p\")\""

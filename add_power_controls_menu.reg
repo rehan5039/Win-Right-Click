@@ -1,0 +1,41 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Power]
+@="Power"
+"Icon"="imageres.dll,-109"
+"SubCommands"="power_shutdown;power_restart;power_sleep;power_hibernate;power_lock"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_shutdown]
+@="Shutdown"
+"Icon"="imageres.dll,-109"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_shutdown\command]
+@="shutdown /s /t 0"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_restart]
+@="Restart"
+"Icon"="imageres.dll,-109"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_restart\command]
+@="shutdown /r /t 0"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_sleep]
+@="Sleep"
+"Icon"="imageres.dll,-109"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_sleep\command]
+@="powershell -NoProfile -Command \"(Add-Type -AssemblyName System.Windows.Forms -PassThru)::Application.SetSuspendState('Suspend',$true,$true)\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_hibernate]
+@="Hibernate"
+"Icon"="imageres.dll,-109"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_hibernate\command]
+@="shutdown /h"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_lock]
+@="Lock"
+"Icon"="imageres.dll,-109"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\power_lock\command]
+@="rundll32.exe user32.dll,LockWorkStation"

@@ -1,0 +1,22 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\OpenParentFolder]
+@="Open Parent Folder"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_CLASSES_ROOT\*\shell\OpenParentFolder\command]
+@="powershell -NoProfile -WindowStyle Hidden -Command \"$p = Split-Path -LiteralPath '%1' -Parent; if ([string]::IsNullOrWhiteSpace($p)) { $p = Split-Path -LiteralPath '%1' -Parent }; Start-Process explorer -ArgumentList $p\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenParentFolder]
+@="Open Parent Folder"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenParentFolder\command]
+@="powershell -NoProfile -WindowStyle Hidden -Command \"$p = Split-Path -LiteralPath '%1' -Parent; if ([string]::IsNullOrWhiteSpace($p)) { $p = '%1' }; Start-Process explorer -ArgumentList $p\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenParentFolder]
+@="Open Parent Folder"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenParentFolder\command]
+@="powershell -NoProfile -WindowStyle Hidden -Command \"$c = '%V'; try { $p = Split-Path -LiteralPath $c -Parent } catch { $p = $c }; if ([string]::IsNullOrWhiteSpace($p)) { $p = $c }; Start-Process explorer -ArgumentList $p\""

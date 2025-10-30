@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\BatchRename]
+@="Batch Rename (Numbered)"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\BatchRename\command]
+@="powershell -NoProfile -NoLogo -Command \"$p='%V'; $base=Read-Host 'Base name (e.g., photo)'; $pad=[int](Read-Host 'Digits (e.g., 3)'); $i=1; Get-ChildItem -LiteralPath $p -File | Sort-Object Name | ForEach-Object { $ext=$_.Extension; $new=('{0}_{1:d'+$pad+'}{2}' -f $base,$i,$ext); Rename-Item -LiteralPath $_.FullName -NewName $new; $i++ }\""

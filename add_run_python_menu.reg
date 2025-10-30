@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\RunWithPython]
+@="Run with Python"
+"Icon"="python.exe"
+"AppliesTo"="System.FileExtension:=\".py\""
+
+[HKEY_CLASSES_ROOT\*\shell\RunWithPython\command]
+@="powershell -NoExit -Command \"& 'py' -3 -- '%1'\""

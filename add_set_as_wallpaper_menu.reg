@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+; Applies to picture files
+[HKEY_CLASSES_ROOT\SystemFileAssociations\image\shell\SetAsWallpaper]
+@="Set as Desktop Background"
+"Icon"="imageres.dll,-5325"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\image\shell\SetAsWallpaper\command]
+@="powershell -NoProfile -Command \"$p='%1'; $k='HKCU:\\Control Panel\\Desktop'; Set-ItemProperty -Path $k -Name Wallpaper -Value $p; Set-ItemProperty -Path $k -Name WallpaperStyle -Value '10'; Set-ItemProperty -Path $k -Name TileWallpaper -Value '0'; rundll32.exe user32.dll, UpdatePerUserSystemParameters\""

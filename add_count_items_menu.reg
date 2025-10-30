@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\CountItems]
+@="Count Files/Folders"
+"Icon"="imageres.dll,-5370"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\CountItems\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $p='%V'; $f=(Get-ChildItem -LiteralPath $p -Recurse -File -Force | Measure-Object).Count; $d=(Get-ChildItem -LiteralPath $p -Recurse -Directory -Force | Measure-Object).Count; [System.Windows.MessageBox]::Show(\"Files: $f`nFolders: $d\", \"Count for $p\")\""

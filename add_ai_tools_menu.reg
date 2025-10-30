@@ -1,0 +1,27 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\AITools]
+@="AI Tools"
+"SubCommands"="ai_ask_copilot;ai_summarize_text;ai_ocr_tesseract"
+"Icon"="msedge.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\ai_ask_copilot]
+@="Ask Copilot about this file"
+"Icon"="msedge.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\ai_ask_copilot\command]
+@="powershell -NoProfile -Command \"$p=(Get-Item -LiteralPath '%1').FullName; $q=[uri]::EscapeDataString('Tell me about: ' + $p); Start-Process msedge ('https://copilot.microsoft.com/?q=' + $q)\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\ai_summarize_text]
+@="Summarize this text file (Copilot)"
+"Icon"="msedge.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\ai_summarize_text\command]
+@="powershell -NoProfile -Command \"$p='%1'; $name=[IO.Path]::GetFileName($p); $q=[uri]::EscapeDataString('Summarize this file: ' + $name + ' (path: ' + $p + ')'); Start-Process msedge ('https://copilot.microsoft.com/?q=' + $q)\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\ai_ocr_tesseract]
+@="Extract text (OCR via Tesseract)"
+"Icon"="imageres.dll,-1027"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\ai_ocr_tesseract\command]
+@="powershell -NoProfile -Command \"$t='C:\\Program Files\\Tesseract-OCR\\tesseract.exe'; if(Test-Path $t){ & $t '%1' stdout | Set-Clipboard; Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('OCR complete. Text copied to clipboard.','OCR'); } else { Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('Install Tesseract OCR at C:\\Program Files\\Tesseract-OCR','OCR'); }\""

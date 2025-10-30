@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\CreateShortcutHere]
+@="Create Shortcut Here"
+"Icon"="imageres.dll,-16769"
+
+[HKEY_CLASSES_ROOT\*\shell\CreateShortcutHere\command]
+@="powershell -NoProfile -Command \"$t='%1'; $dir=Split-Path -LiteralPath $t -Parent; $leaf=Split-Path -LiteralPath $t -Leaf; $ws=New-Object -ComObject WScript.Shell; $lnk=Join-Path $dir ($leaf + ' - Shortcut.lnk'); $s=$ws.CreateShortcut($lnk); $s.TargetPath=$t; $s.WorkingDirectory=$dir; $s.Save()\""

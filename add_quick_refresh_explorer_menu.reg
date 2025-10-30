@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\QuickRefresh]
+@="Refresh Explorer"
+"Icon"="imageres.dll,-5304"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\QuickRefresh\command]
+@="powershell -NoProfile -WindowStyle Hidden -Command \"$shell = New-Object -ComObject Shell.Application; $shell.Windows() | ForEach-Object { try { $_.Refresh() } catch {} }\""

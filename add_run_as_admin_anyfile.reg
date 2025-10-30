@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\RunAsAdminAny]
+@="Run file as administrator"
+"HasLUAShield"=""
+"Icon"="imageres.dll,-78"
+
+[HKEY_CLASSES_ROOT\*\shell\RunAsAdminAny\command]
+@="powershell -Command \"Start-Process -FilePath '%1' -Verb RunAs\""
