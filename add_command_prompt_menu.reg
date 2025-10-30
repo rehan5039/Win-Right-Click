@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\CommandPrompt]
+"MUIVerb"="Command Prompt"
+"SubCommands"="cmd_open_here;cmd_open_admin"
+"Icon"="imageres.dll,-5323"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_open_here]
+@="Open here"
+"Icon"="imageres.dll,-5323"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_open_here\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_open_admin]
+@="Open here as administrator"
+"Icon"="imageres.dll,-5323"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_open_admin\command]
+@="powershell -Command \"Start-Process cmd.exe -ArgumentList '/s','/k','pushd','%V' -Verb RunAs\""

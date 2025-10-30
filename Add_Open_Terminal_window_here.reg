@@ -1,0 +1,27 @@
+Windows Registry Editor Version 5.00
+
+; In Windows Terminal: https://apps.microsoft.com/detail/9n0dx20hk701?hl=en-GB&gl=IN
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenInWindowsTerminal]
+@="Open in Windows Terminal"
+"Icon"="ms-resource:AppName" 
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenInWindowsTerminal\command]
+@="wt -d \"%V\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenInWindowsTerminal]
+@="Open in Windows Terminal"
+"Icon"="ms-resource:AppName"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenInWindowsTerminal\command]
+@="wt -d \"%V\""
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenInWindowsTerminal]
+@="Open in Windows Terminal"
+"Icon"="ms-resource:AppName"
+"Extended"=-
+
+[HKEY_CLASSES_ROOT\Drive\shell\OpenInWindowsTerminal\command]
+@="wt -d \"%V\""

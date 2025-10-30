@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\KillTasks]
+"MUIVerb"="Kill Unresponsive Tasks"
+"SubCommands"="kill_all_tasks;kill_unresponsive_tasks"
+"Icon"="taskmgr.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\kill_all_tasks]
+@="Kill All running tasks"
+"Icon"="taskmgr.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\kill_all_tasks\command]
+@="powershell -WindowStyle Hidden -Command \"$protected = @('explorer','winlogon','csrss','lsass','services','System','svchost','dwm','taskmgr','spoolsv','Registry','MsMpEng'); Get-Process | Where-Object { $protected -notcontains $_.ProcessName } | ForEach-Object { try { Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue } catch {} }\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\kill_unresponsive_tasks]
+@="Kill only Unresponsive Tasks"
+"Icon"="taskmgr.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\kill_unresponsive_tasks\command]
+@="powershell -WindowStyle Hidden -Command \"Get-Process | Where-Object { $_.Responding -eq $false -and $_.ProcessName -ne 'explorer' } | ForEach-Object { try { Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue } catch {} }\""

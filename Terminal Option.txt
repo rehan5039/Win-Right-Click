@@ -1,0 +1,98 @@
+Terminal Option
+
+File: add_terminal_menu.reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminal]
+@="Open Terminal"
+"Icon"="cmd.exe"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminal\command]
+@="cmd.exe /k cd /d \"%V\""
+
+
+
+Windows Terminal Version (Agar Windows Terminal installed hai):
+File: add_windows_terminal.reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWindowsTerminal]
+@="Open Windows Terminal"
+"Icon"="wt.exe"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWindowsTerminal\command]
+@="wt -d \"%V\""
+
+
+
+Multiple Terminals Sub-Menu:
+File: add_terminals_submenu.reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal]
+"MUIVerb"="Open Terminal"
+"SubCommands"="cmd_prompt;powershell;windows_terminal"
+"Icon"="cmd.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_prompt]
+@="Command Prompt"
+"Icon"="cmd.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_prompt\command]
+@="cmd.exe /k cd /d \"%V\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\powershell]
+@="Windows PowerShell"
+"Icon"="powershell.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\powershell\command]
+@="powershell -NoExit -Command \"Set-Location -LiteralPath '%V'\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\windows_terminal]
+@="Windows Terminal"
+"Icon"="wt.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\windows_terminal\command]
+@="wt -d \"%V\""
+
+
+
+Simple PowerShell Version:
+File: add_powershell_menu.reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenPowerShell]
+@="Open PowerShell"
+"Icon"="powershell.exe"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenPowerShell\command]
+@="powershell -NoExit -Command \"Set-Location -LiteralPath '%V'\""
+
+
+
+Admin Versions (Run as Administrator):
+File: add_terminal_admin.reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminalAdmin]
+@="Open Terminal as Administrator"
+"Icon"="cmd.exe"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminalAdmin\command]
+@="powershell -Command \"Start-Process cmd -ArgumentList '/k','cd','/d','%V' -Verb RunAs\""
+
+
+
+Remove ke liye:
+File: remove_terminal_menu.reg
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminal]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWindowsTerminal]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenPowerShell]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminalAdmin]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_prompt]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\powershell]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\windows_terminal]

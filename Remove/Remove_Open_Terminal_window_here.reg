@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminal]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWindowsTerminal]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenPowerShell]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenTerminalAdmin]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd_prompt]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\powershell]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\windows_terminal]

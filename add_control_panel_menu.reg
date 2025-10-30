@@ -1,0 +1,27 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\ControlPanel]
+"MUIVerb"="Control Panel"
+"SubCommands"="controlpanel_category;controlpanel_icons;controlpanel_godmode"
+"icon"="shell32.dll,-137"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\controlpanel_category]
+@="Control Panel (Category)"
+"icon"="shell32.dll,-137"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\controlpanel_category\command]
+@="control"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\controlpanel_icons]
+@="All Control Panel Items (Icons)"
+"icon"="shell32.dll,-137"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\controlpanel_icons\command]
+@="explorer ::{26EE0668-A00A-44D7-9371-BEB064C98683}"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\controlpanel_godmode]
+@="All Tasks (God Mode)"
+"icon"="shell32.dll,-137"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\controlpanel_godmode\command]
+@="explorer shell:::{ED7BA470-8E54-465E-825C-99712043E01C}"

@@ -1,0 +1,34 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\SafeMode]
+"MUIVerb"="Safe Mode"
+"SubCommands"="safemode_normal;safemode_safe;safemode_network;safemode_cmd"
+"Icon"="shell32.dll,-255"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_normal]
+@="Restart in Normal Mode"
+"Icon"="shell32.dll,-255"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_normal\command]
+@="powershell -Command \"Start-Process cmd -ArgumentList '/c', 'bcdedit /deletevalue {default} safeboot & bcdedit /deletevalue {default} safebootalternateshell & shutdown /r /t 0' -Verb RunAs\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_safe]
+@="Restart in Safe Mode"
+"Icon"="shell32.dll,-255"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_safe\command]
+@="powershell -Command \"Start-Process cmd -ArgumentList '/c', 'bcdedit /set {default} safeboot minimal & shutdown /r /t 0' -Verb RunAs\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_network]
+@="Restart in Safe Mode with Networking"
+"Icon"="shell32.dll,-255"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_network\command]
+@="powershell -Command \"Start-Process cmd -ArgumentList '/c', 'bcdedit /set {default} safeboot network & shutdown /r /t 0' -Verb RunAs\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_cmd]
+@="Restart in Safe Mode with Command Prompt"
+"Icon"="shell32.dll,-255"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\safemode_cmd\command]
+@="powershell -Command \"Start-Process cmd -ArgumentList '/c', 'bcdedit /set {default} safeboot minimal & bcdedit /set {default} safebootalternateshell yes & shutdown /r /t 0' -Verb RunAs\""
