@@ -1,6 +1,6 @@
 # Windows Right‑Click Context Menu Enhancements
 
-Add handy options to the File Explorer right‑click menu on Windows 10/11: open Command Prompt/Windows Terminal here, Control Panel shortcuts (incl. God Mode), Safe Mode reboot options, and quick task killers. Each feature is a portable .reg file—import to enable, use the `Remove` folder to disable.
+Add handy options to the File Explorer right‑click menu on Windows 10/11: open Command Prompt/Windows Terminal here, Control Panel shortcuts (incl. God Mode), Safe Mode reboot options, and quick task killers. Each feature is a portable .reg file import to enable, use the `Remove` folder to disable.
 
 > Caution: These modify the Windows Registry. Review files before importing and create a restore point or registry backup. Admin rights are required for most entries.
 
@@ -208,3 +208,4 @@ Use the matching files in `Remove/`:
 ---
 
 If you want a combined installer/uninstaller or screenshots, open an issue and I can add them. Happy tweaking! 🎯
+
