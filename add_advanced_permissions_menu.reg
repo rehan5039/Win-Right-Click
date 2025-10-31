@@ -1,0 +1,61 @@
+Windows Registry Editor Version 5.00
+
+; Advanced File/Folder Permissions Menu
+
+[HKEY_CLASSES_ROOT\*\shell\AdvancedPerms]
+"MUIVerb"="Advanced Permissions"
+"SubCommands"="perm_readonly;perm_hidden;perm_system;perm_viewacl"
+"Icon"="imageres.dll,-102"
+
+; Set Read-Only
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_readonly]
+@="Toggle Read-Only"
+"Icon"="imageres.dll,-102"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_readonly\command]
+@="powershell -NoProfile -Command \"$f=Get-Item -LiteralPath '%1'; if($f.IsReadOnly){$f.IsReadOnly=$false; $msg='Read-Only REMOVED'}else{$f.IsReadOnly=$true; $msg='Read-Only SET'}; [System.Windows.MessageBox]::Show($msg,'Permissions','OK','Information')\""
+
+; Toggle Hidden
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_hidden]
+@="Toggle Hidden Attribute"
+"Icon"="imageres.dll,-102"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_hidden\command]
+@="powershell -NoProfile -Command \"$f=Get-Item -LiteralPath '%1' -Force; if($f.Attributes -band [IO.FileAttributes]::Hidden){$f.Attributes=$f.Attributes -bxor [IO.FileAttributes]::Hidden; $msg='Hidden attribute REMOVED'}else{$f.Attributes=$f.Attributes -bor [IO.FileAttributes]::Hidden; $msg='Hidden attribute SET'}; [System.Windows.MessageBox]::Show($msg,'Permissions','OK','Information')\""
+
+; Set System attribute
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_system]
+@="Toggle System Attribute"
+"Icon"="imageres.dll,-102"
+"HasLUAShield"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_system\command]
+@="powershell -NoProfile -Command \"Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-Command','$f=Get-Item -LiteralPath ''%1'' -Force; if($f.Attributes -band [IO.FileAttributes]::System){$f.Attributes=$f.Attributes -bxor [IO.FileAttributes]::System; $msg=''System attribute REMOVED''}else{$f.Attributes=$f.Attributes -bor [IO.FileAttributes]::System; $msg=''System attribute SET''}; [System.Windows.MessageBox]::Show($msg,''Permissions'',''OK'',''Information'')'\""
+
+; View ACL
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_viewacl]
+@="View Security ACL"
+"Icon"="imageres.dll,-102"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_viewacl\command]
+@="powershell -NoExit -Command \"Get-Acl -LiteralPath '%1' | Format-List\""
+
+; Folder variants
+[HKEY_CLASSES_ROOT\Directory\shell\AdvancedPerms]
+"MUIVerb"="Advanced Permissions"
+"SubCommands"="perm_readonly_folder;perm_hidden;perm_system;perm_viewacl_folder"
+"Icon"="imageres.dll,-102"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_readonly_folder]
+@="Toggle Read-Only"
+"Icon"="imageres.dll,-102"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_readonly_folder\command]
+@="powershell -NoProfile -Command \"$f=Get-Item -LiteralPath '%1'; if($f.Attributes -band [IO.FileAttributes]::ReadOnly){$f.Attributes=$f.Attributes -bxor [IO.FileAttributes]::ReadOnly; $msg='Read-Only REMOVED'}else{$f.Attributes=$f.Attributes -bor [IO.FileAttributes]::ReadOnly; $msg='Read-Only SET'}; [System.Windows.MessageBox]::Show($msg,'Permissions','OK','Information')\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_viewacl_folder]
+@="View Security ACL"
+"Icon"="imageres.dll,-102"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\perm_viewacl_folder\command]
+@="powershell -NoExit -Command \"Get-Acl -LiteralPath '%1' | Format-List\""

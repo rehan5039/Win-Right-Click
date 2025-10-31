@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+; Share file via Bluetooth
+
+[HKEY_CLASSES_ROOT\*\shell\ShareBluetooth]
+@="Send to Bluetooth Device"
+"Icon"="fsquirt.exe,0"
+
+[HKEY_CLASSES_ROOT\*\shell\ShareBluetooth\command]
+@="fsquirt.exe"

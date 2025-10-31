@@ -1,0 +1,48 @@
+Windows Registry Editor Version 5.00
+
+; Advanced Batch Rename with multiple options
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\AdvancedBatchRename]
+"MUIVerb"="Batch Rename Files"
+"SubCommands"="rename_numbered;rename_prefix;rename_suffix;rename_replace;rename_custom"
+"Icon"="imageres.dll,-5302"
+
+; Sequential numbering
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_numbered]
+@="Add Sequential Numbers"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_numbered\command]
+@="powershell -NoProfile -NoLogo -Command \"$p='%V'; $base=Read-Host 'Base name (e.g., photo)'; $pad=[int](Read-Host 'Number of digits (e.g., 3)'); $i=1; Get-ChildItem -LiteralPath $p -File | Sort-Object Name | ForEach-Object { $ext=$_.Extension; $new=('{0}_{1:d'+$pad+'}{2}' -f $base,$i,$ext); Rename-Item -LiteralPath $_.FullName -NewName $new; $i++ }; Read-Host 'Done! Press Enter to close'\""
+
+; Add prefix
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_prefix]
+@="Add Prefix to All Files"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_prefix\command]
+@="powershell -NoProfile -NoLogo -Command \"$p='%V'; $prefix=Read-Host 'Enter prefix to add'; Get-ChildItem -LiteralPath $p -File | ForEach-Object { $new=$prefix + $_.Name; Rename-Item -LiteralPath $_.FullName -NewName $new }; Read-Host 'Done! Press Enter to close'\""
+
+; Add suffix (before extension)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_suffix]
+@="Add Suffix to All Files"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_suffix\command]
+@="powershell -NoProfile -NoLogo -Command \"$p='%V'; $suffix=Read-Host 'Enter suffix to add (before extension)'; Get-ChildItem -LiteralPath $p -File | ForEach-Object { $base=$_.BaseName; $ext=$_.Extension; $new=$base + $suffix + $ext; Rename-Item -LiteralPath $_.FullName -NewName $new }; Read-Host 'Done! Press Enter to close'\""
+
+; Replace text in filenames
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_replace]
+@="Find and Replace Text"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_replace\command]
+@="powershell -NoProfile -NoLogo -Command \"$p='%V'; $find=Read-Host 'Text to find'; $replace=Read-Host 'Replace with'; Get-ChildItem -LiteralPath $p -File | Where-Object { $_.Name -like '*'+$find+'*' } | ForEach-Object { $new=$_.Name -replace [regex]::Escape($find),$replace; Rename-Item -LiteralPath $_.FullName -NewName $new }; Read-Host 'Done! Press Enter to close'\""
+
+; Custom rename with date/time
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_custom]
+@="Add Date/Time Stamp"
+"Icon"="imageres.dll,-5302"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\rename_custom\command]
+@="powershell -NoProfile -NoLogo -Command \"$p='%V'; $dt=Get-Date -Format 'yyyy-MM-dd'; Get-ChildItem -LiteralPath $p -File | ForEach-Object { $base=$_.BaseName; $ext=$_.Extension; $new=$dt + '_' + $base + $ext; Rename-Item -LiteralPath $_.FullName -NewName $new }; Read-Host 'Done! Press Enter to close'\""

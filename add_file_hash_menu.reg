@@ -1,0 +1,48 @@
+Windows Registry Editor Version 5.00
+
+; Complete File Hash Verification Menu (MD5, SHA1, SHA256, SHA512)
+
+[HKEY_CLASSES_ROOT\*\shell\FileHashMenu]
+"MUIVerb"="Get File Hash"
+"SubCommands"="hash_md5;hash_sha1;hash_sha256;hash_sha512;hash_all"
+"Icon"="shell32.dll,-16711"
+
+; MD5
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_md5]
+@="MD5 Hash"
+"Icon"="shell32.dll,-16711"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_md5\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $hash=(Get-FileHash -LiteralPath '%1' -Algorithm MD5).Hash; Set-Clipboard $hash; [System.Windows.MessageBox]::Show('MD5: ' + $hash + \"`n`nCopied to clipboard!\",'MD5 Hash','OK','Information')\""
+
+; SHA1
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_sha1]
+@="SHA1 Hash"
+"Icon"="shell32.dll,-16711"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_sha1\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $hash=(Get-FileHash -LiteralPath '%1' -Algorithm SHA1).Hash; Set-Clipboard $hash; [System.Windows.MessageBox]::Show('SHA1: ' + $hash + \"`n`nCopied to clipboard!\",'SHA1 Hash','OK','Information')\""
+
+; SHA256
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_sha256]
+@="SHA256 Hash"
+"Icon"="shell32.dll,-16711"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_sha256\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $hash=(Get-FileHash -LiteralPath '%1' -Algorithm SHA256).Hash; Set-Clipboard $hash; [System.Windows.MessageBox]::Show('SHA256: ' + $hash + \"`n`nCopied to clipboard!\",'SHA256 Hash','OK','Information')\""
+
+; SHA512
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_sha512]
+@="SHA512 Hash"
+"Icon"="shell32.dll,-16711"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_sha512\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $hash=(Get-FileHash -LiteralPath '%1' -Algorithm SHA512).Hash; Set-Clipboard $hash; [System.Windows.MessageBox]::Show('SHA512: ' + $hash + \"`n`nCopied to clipboard!\",'SHA512 Hash','OK','Information')\""
+
+; All hashes
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_all]
+@="All Hashes (MD5/SHA1/SHA256)"
+"Icon"="shell32.dll,-16711"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\hash_all\command]
+@="powershell -NoProfile -Command \"Add-Type -AssemblyName PresentationFramework; $f='%1'; $md5=(Get-FileHash -LiteralPath $f -Algorithm MD5).Hash; $sha1=(Get-FileHash -LiteralPath $f -Algorithm SHA1).Hash; $sha256=(Get-FileHash -LiteralPath $f -Algorithm SHA256).Hash; $all=\"MD5:`n$md5`n`nSHA1:`n$sha1`n`nSHA256:`n$sha256\"; Set-Clipboard $all; [System.Windows.MessageBox]::Show($all + \"`n`nAll hashes copied to clipboard!\",'File Hashes','OK','Information')\""

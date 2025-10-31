@@ -1,0 +1,32 @@
+Windows Registry Editor Version 5.00
+
+; Screenshot tools from right-click menu
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\ScreenshotTools]
+"MUIVerb"="Screenshot Tools"
+"SubCommands"="snip_tool;snip_sketch;fullscreen_shot"
+"Icon"="SnippingTool.exe,0"
+
+; Snipping Tool
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\snip_tool]
+@="Open Snipping Tool"
+"Icon"="SnippingTool.exe,0"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\snip_tool\command]
+@="SnippingTool.exe"
+
+; Snip & Sketch (Win+Shift+S)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\snip_sketch]
+@="Snip & Sketch (Screen Snip)"
+"Icon"="imageres.dll,-5316"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\snip_sketch\command]
+@="ms-screenclip:"
+
+; Full screenshot to clipboard
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\fullscreen_shot]
+@="Full Screenshot to Clipboard"
+"Icon"="imageres.dll,-5316"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\fullscreen_shot\command]
+@="powershell -NoProfile -WindowStyle Hidden -Command \"Add-Type -AssemblyName System.Windows.Forms; $screen=[System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $bmp=New-Object System.Drawing.Bitmap($screen.Width,$screen.Height); $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($screen.Location,[System.Drawing.Point]::Empty,$screen.Size); [System.Windows.Forms.Clipboard]::SetImage($bmp); $g.Dispose(); $bmp.Dispose(); [System.Windows.MessageBox]::Show('Screenshot saved to clipboard!','Screenshot','OK','Information')\""

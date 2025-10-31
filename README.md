@@ -48,6 +48,14 @@ Add handy options to the File Explorer right‑click menu on Windows 10/11: open
 - `add_power_controls_menu.reg` — Power submenu: Shutdown, Restart, Sleep, Hibernate, Lock.
 - `add_ai_tools_menu.reg` — AI helpers: Ask Copilot about file, Summarize file (opens Copilot), OCR via Tesseract to clipboard.
 - `add_wipe_free_space_menu.reg` — Securely wipe free space on the current drive using `cipher /w` (heavy and irreversible; Shift+Right‑Click to reveal).
+- `add_advanced_batch_rename_menu.reg` — Advanced batch rename with multiple options: sequential numbering, prefix/suffix, find & replace, date/time stamps.
+- `add_share_bluetooth_menu.reg` — Send files to Bluetooth devices using Windows Bluetooth File Transfer.
+- `add_cloud_upload_menu.reg` — Upload files/folders to OneDrive or open Google Drive web uploader.
+- `add_screenshot_menu.reg` — Screenshot tools: Snipping Tool, Snip & Sketch, Full screenshot to clipboard.
+- `add_file_hash_menu.reg` — Complete file hash verification menu (MD5, SHA1, SHA256, SHA512, All hashes).
+- `add_create_iso_menu.reg` — Create ISO image from folder (requires oscdimg.exe from Windows ADK or third-party tools).
+- `add_file_monitor_menu.reg` — Monitor files/folders for changes in real-time using FileSystemWatcher.
+- `add_advanced_permissions_menu.reg` — Advanced file permissions: toggle read-only, hidden, system attributes; view ACL.
 - `Terminal Option.txt` — Extra menu variants (templates) for Command Prompt, PowerShell, Windows Terminal, and admin versions. Copy a block to a new `.reg` file and import if you want these alternatives.
 - `Remove/` — Contains matching removal scripts for each feature (e.g., `Remove_Open_Terminal_window_here.reg`). Run to cleanly uninstall.
 
@@ -78,6 +86,14 @@ reg import "Remove\Remove_Open_Terminal_window_here.reg"
 - Defender toggle: May be blocked by Windows Security Tamper Protection; turn that off first if needed. Uses `Set-MpPreference -DisableRealtimeMonitoring` and related flags; admin required.
 - EFS: Works on NTFS volumes and editions that support EFS (Pro/Enterprise). Keep certificates backed up. See `cipher /?`.
 - Secure wipe: Uses `cipher /w:<drive>` to overwrite free space. This is slow (can take hours) and cannot be undone. The menu is marked as Extended (hold Shift while right‑clicking) and shows a UAC prompt by design—use only when absolutely needed.
+- Advanced Batch Rename: Powerful renaming options for organizing files in bulk. Works on all files in the current folder.
+- Bluetooth File Transfer: Uses Windows built-in `fsquirt.exe`. Ensure Bluetooth is enabled and devices are paired.
+- Cloud Upload: OneDrive option copies to your OneDrive folder (must be set up first). Google Drive opens the web uploader.
+- Screenshot Tools: Full screenshot captures entire primary screen to clipboard. Snip & Sketch uses Windows 10/11 built-in tool.
+- File Hash: Supports MD5, SHA1, SHA256, SHA512. Hash is copied to clipboard automatically.
+- ISO Creation: Requires `oscdimg.exe` from Windows ADK or use third-party tools like ImgBurn, PowerISO.
+- File Monitor: Real-time monitoring shows all file/folder changes, creates, deletes, and renames. Press Ctrl+C to stop.
+- Advanced Permissions: Quick toggle for file attributes (read-only, hidden, system). View ACL shows detailed security permissions.
 - OCR: Requires Tesseract at `C:\\Program Files\\Tesseract-OCR\\tesseract.exe` or edit the path.
 - Safe Mode entries execute `bcdedit` and then reboot immediately. Save your work before clicking.
 - "Kill tasks" entries may terminate apps without saving—use carefully. The "unresponsive only" option is safer.
@@ -144,6 +160,14 @@ Use the matching files in `Remove/`:
 - `remove_folder_size_menu.reg`
 - `remove_symlink_junction_menu.reg`
 - `remove_run_python_menu.reg`
+- `remove_advanced_batch_rename_menu.reg`
+- `remove_share_bluetooth_menu.reg`
+- `remove_cloud_upload_menu.reg`
+- `remove_screenshot_menu.reg`
+- `remove_file_hash_menu.reg`
+- `remove_create_iso_menu.reg`
+- `remove_file_monitor_menu.reg`
+- `remove_advanced_permissions_menu.reg`
 
 ## Safety first
 

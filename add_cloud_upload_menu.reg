@@ -1,0 +1,37 @@
+Windows Registry Editor Version 5.00
+
+; Upload to Cloud Services
+
+[HKEY_CLASSES_ROOT\*\shell\CloudUpload]
+"MUIVerb"="Upload to Cloud"
+"SubCommands"="upload_onedrive;upload_gdrive_web"
+"Icon"="imageres.dll,-1043"
+
+; OneDrive
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\upload_onedrive]
+@="Upload to OneDrive"
+"Icon"="imageres.dll,-1043"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\upload_onedrive\command]
+@="powershell -NoProfile -Command \"$od=$env:OneDrive; if($od -and (Test-Path $od)){Copy-Item -LiteralPath '%1' -Destination $od; explorer $od}else{[System.Windows.MessageBox]::Show('OneDrive folder not found. Please set up OneDrive first.','Upload Failed','OK','Warning')}\""
+
+; Google Drive (web upload)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\upload_gdrive_web]
+@="Open Google Drive Upload (Web)"
+"Icon"="imageres.dll,-1043"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\upload_gdrive_web\command]
+@="cmd /c start \"\" \"https://drive.google.com/drive/my-drive\""
+
+; Folder variant
+[HKEY_CLASSES_ROOT\Directory\shell\CloudUpload]
+"MUIVerb"="Upload to Cloud"
+"SubCommands"="upload_onedrive_folder;upload_gdrive_web"
+"Icon"="imageres.dll,-1043"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\upload_onedrive_folder]
+@="Upload to OneDrive"
+"Icon"="imageres.dll,-1043"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\upload_onedrive_folder\command]
+@="powershell -NoProfile -Command \"$od=$env:OneDrive; if($od -and (Test-Path $od)){Copy-Item -LiteralPath '%1' -Destination $od -Recurse; explorer $od}else{[System.Windows.MessageBox]::Show('OneDrive folder not found. Please set up OneDrive first.','Upload Failed','OK','Warning')}\""

@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+; Create ISO image from folder (requires oscdimg.exe from Windows ADK)
+
+[HKEY_CLASSES_ROOT\Directory\shell\CreateISO]
+@="Create ISO Image"
+"Icon"="imageres.dll,-5205"
+
+[HKEY_CLASSES_ROOT\Directory\shell\CreateISO\command]
+@="powershell -NoProfile -Command \"$src='%1'; $name=[System.IO.Path]::GetFileName($src); $dest=[Microsoft.VisualBasic.Interaction]::InputBox('Save ISO as (full path):', 'Create ISO', $env:USERPROFILE+'\\Desktop\\'+$name+'.iso'); if($dest){$osc='C:\\Program Files (x86)\\Windows Kits\\10\\Assessment and Deployment Kit\\Deployment Tools\\amd64\\Oscdimg\\oscdimg.exe'; if(Test-Path $osc){Start-Process -Wait -FilePath $osc -ArgumentList '-m','-o','-u2','-udfver102',\"`\"$src`\"\",\"`\"$dest`\"\"; [System.Windows.MessageBox]::Show('ISO created: '+$dest,'Success','OK','Information')}else{$alt='C:\\Windows\\System32\\cmd.exe /c echo ISO creation requires oscdimg.exe from Windows ADK & pause'; Start-Process cmd -ArgumentList '/c','echo ISO creation requires oscdimg.exe (Windows ADK). You can also use ImgBurn, PowerISO, or DISM. && pause'}}\""
