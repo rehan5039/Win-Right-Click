@@ -1,0 +1,36 @@
+Windows Registry Editor Version 5.00
+
+; Simple Defender Toggle (Alternative Version)
+; Shows confirmation messages and handles Tamper Protection errors
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\DefenderToggle]
+@="Windows Defender Toggle"
+"MUIVerb"="Windows Defender Toggle"
+"SubCommands"="defender_disable;defender_enable;defender_status"
+"Icon"="C:\\Program Files\\Windows Defender\\MpCmdRun.exe"
+
+; Disable Defender
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\defender_disable]
+@="Disable Real-Time Protection"
+"Icon"="imageres.dll,-5316"
+"HasLUAShield"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\defender_disable\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"Start-Process powershell.exe -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-NoExit','-Command','Write-Host ''Disabling Windows Defender...'' -ForegroundColor Yellow; try { Set-MpPreference -DisableRealtimeMonitoring `$true; Set-MpPreference -DisableBehaviorMonitoring `$true; Set-MpPreference -DisableIOAVProtection `$true; Set-MpPreference -DisableScriptScanning `$true; Write-Host ''SUCCESS: Defender disabled!'' -ForegroundColor Green } catch { Write-Host ''ERROR:'' `$_.Exception.Message -ForegroundColor Red; Write-Host '''' -ForegroundColor White; Write-Host ''Please disable Tamper Protection in Windows Security > Virus & threat protection > Manage settings'' -ForegroundColor Yellow }; Write-Host ''''; Write-Host ''Press Enter to close...'' -ForegroundColor Cyan; Read-Host'\""
+
+; Enable Defender
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\defender_enable]
+@="Enable Real-Time Protection"
+"Icon"="imageres.dll,-5321"
+"HasLUAShield"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\defender_enable\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"Start-Process powershell.exe -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-NoExit','-Command','Write-Host ''Enabling Windows Defender...'' -ForegroundColor Yellow; try { Set-MpPreference -DisableRealtimeMonitoring `$false; Set-MpPreference -DisableBehaviorMonitoring `$false; Set-MpPreference -DisableIOAVProtection `$false; Set-MpPreference -DisableScriptScanning `$false; Write-Host ''SUCCESS: Defender enabled!'' -ForegroundColor Green } catch { Write-Host ''ERROR:'' `$_.Exception.Message -ForegroundColor Red }; Write-Host ''''; Write-Host ''Press Enter to close...'' -ForegroundColor Cyan; Read-Host'\""
+
+; Check Status
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\defender_status]
+@="Check Defender Status"
+"Icon"="imageres.dll,-5369"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\defender_status\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -NoExit -Command \"Add-Type -AssemblyName PresentationFramework; $pref=Get-MpPreference; $rt=$pref.DisableRealtimeMonitoring; $bm=$pref.DisableBehaviorMonitoring; $status=if(!$rt){'ON'}else{'OFF'}; $color=if(!$rt){'Green'}else{'Red'}; Write-Host \\\"`n=== Windows Defender Status ===\\\" -ForegroundColor Cyan; Write-Host \\\"Real-Time Protection: $status\\\" -ForegroundColor $color; Write-Host \\\"Behavior Monitoring: $(if(!$bm){'ON'}else{'OFF'})\\\" -ForegroundColor $(if(!$bm){'Green'}else{'Red'}); Write-Host \\\"IOAV Protection: $(if(!$pref.DisableIOAVProtection){'ON'}else{'OFF'})\\\" -ForegroundColor $(if(!$pref.DisableIOAVProtection){'Green'}else{'Red'}); Write-Host \\\"Script Scanning: $(if(!$pref.DisableScriptScanning){'ON'}else{'OFF'})\\\" -ForegroundColor $(if(!$pref.DisableScriptScanning){'Green'}else{'Red'}); [System.Windows.MessageBox]::Show(\\\"Real-Time Protection: $status`nBehavior Monitoring: $(if(!$bm){'ON'}else{'OFF'})`nIOAV Protection: $(if(!$pref.DisableIOAVProtection){'ON'}else{'OFF'})`nScript Scanning: $(if(!$pref.DisableScriptScanning){'ON'}else{'OFF'})\\\",'Defender Status','OK','Information'); Write-Host \\\"`nPress Enter to close...\\\" -ForegroundColor Cyan; Read-Host\""

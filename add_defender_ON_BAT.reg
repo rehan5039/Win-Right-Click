@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+; Defender ON using BAT file (most reliable)
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\DefenderON_BAT]
+@="Defender ON (Click Here)"
+"Icon"="imageres.dll,-5321"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\DefenderON_BAT\command]
+@="\"C:\\Windows\\System32\\cmd.exe\" /c cd /d \"%USERPROFILE%\\Desktop\\right click cmd\" && start \"\" Defender_ON.bat"

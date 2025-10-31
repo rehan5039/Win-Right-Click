@@ -48,6 +48,10 @@ Add handy options to the File Explorer right‑click menu on Windows 10/11: open
 - `add_power_controls_menu.reg` — Power submenu: Shutdown, Restart, Sleep, Hibernate, Lock.
 - `add_ai_tools_menu.reg` — AI helpers: Ask Copilot about file, Summarize file (opens Copilot), OCR via Tesseract to clipboard.
 - `add_wipe_free_space_menu.reg` — Securely wipe free space on the current drive using `cipher /w` (heavy and irreversible; Shift+Right‑Click to reveal).
+- `add_defender_OFF_direct.reg` — **Simple one-click** to turn OFF Windows Defender completely (no submenu).
+- `add_defender_ON_direct.reg` — **Simple one-click** to turn ON Windows Defender completely (no submenu).
+- `Defender_OFF.ps1` — **PowerShell script** to disable Defender with progress display (right-click → Run with PowerShell as Admin).
+- `Defender_ON.ps1` — **PowerShell script** to enable Defender with progress display.
 - `add_advanced_batch_rename_menu.reg` — Advanced batch rename with multiple options: sequential numbering, prefix/suffix, find & replace, date/time stamps.
 - `add_share_bluetooth_menu.reg` — Send files to Bluetooth devices using Windows Bluetooth File Transfer.
 - `add_cloud_upload_menu.reg` — Upload files/folders to OneDrive or open Google Drive web uploader.
@@ -84,6 +88,15 @@ reg import "Remove\Remove_Open_Terminal_window_here.reg"
 - VS Code entry requires Code CLI (`code`) available in PATH (VS Code → Command Palette → “Shell Command: Install 'code' command in PATH”).
 - Git Bash entry assumes Git for Windows is installed to `C:\\Program Files\\Git`. If different, edit the `.reg` path accordingly.
 - Defender toggle: May be blocked by Windows Security Tamper Protection; turn that off first if needed. Uses `Set-MpPreference -DisableRealtimeMonitoring` and related flags; admin required.
+  - **IMPORTANT**: If not working, disable Tamper Protection:
+    1. Open Windows Security → Virus & threat protection
+    2. Manage settings → Turn OFF "Tamper Protection"
+    3. Then run the toggle menu
+  - **Alternative**: Use `add_defender_toggle_simple.reg` for better error messages and status checking
+  - **RECOMMENDED**: Use direct versions for simplicity:
+    - `add_defender_OFF_direct.reg` - One-click OFF (no submenu)
+    - `add_defender_ON_direct.reg` - One-click ON (no submenu)
+    - `Defender_OFF.ps1` / `Defender_ON.ps1` - PowerShell scripts with visual progress
 - EFS: Works on NTFS volumes and editions that support EFS (Pro/Enterprise). Keep certificates backed up. See `cipher /?`.
 - Secure wipe: Uses `cipher /w:<drive>` to overwrite free space. This is slow (can take hours) and cannot be undone. The menu is marked as Extended (hold Shift while right‑clicking) and shows a UAC prompt by design—use only when absolutely needed.
 - Advanced Batch Rename: Powerful renaming options for organizing files in bulk. Works on all files in the current folder.
@@ -109,8 +122,16 @@ reg import "Remove\Remove_Open_Terminal_window_here.reg"
 - Windows Terminal doesn’t launch:
   - Install Windows Terminal from Microsoft Store and ensure `wt` resolves in PATH.
   - Try `wt.exe -d "%V"` if `wt` alias is disabled.
-- Elevated Cmd can’t see mapped drives:
+- Elevated Cmd can't see mapped drives:
   - `Add_Open_command_window_here_as_administrator.reg` sets `EnableLinkedConnections=1`. Sign out/in (or reboot) after applying.
+- Defender toggle not working:
+  - **Most Common**: Tamper Protection is ON. Disable it:
+    1. Open Windows Security (search in Start menu)
+    2. Go to "Virus & threat protection"
+    3. Click "Manage settings"
+    4. Turn OFF "Tamper Protection" (requires admin)
+  - Try the alternative version: `add_defender_toggle_simple.reg` (shows detailed error messages)
+  - Check status with PowerShell: `Get-MpPreference | Select-Object Disable*`
 - Stuck in Safe Mode:
   - Use the "Restart in Normal Mode" item (from the same Safe Mode submenu) or run:
     ```cmd
@@ -177,3 +198,13 @@ Use the matching files in `Remove/`:
 
 ---
 
+## Short Hindi guide (छोटा मार्गदर्शन)
+
+- जो फ़ीचर चाहिए, उसका `.reg` फाइल डबल‑क्लिक करें → Yes/OK।
+- हटाने के लिए `Remove` फ़ोल्डर में उसी का `Remove_*.reg` चलाएं।
+- Windows Terminal चाहिए तो पहले Microsoft Store से इंस्टॉल करें (तभी `wt` काम करेगा)।
+- Safe Mode वाले विकल्प तुरंत रीबूट कराते हैं—पहले काम सेव कर लें।
+
+---
+
+If you want a combined installer/uninstaller or screenshots, open an issue and I can add them. Happy tweaking! 🎯

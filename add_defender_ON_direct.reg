@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; Simple single-click Defender ON (no submenu)
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\DefenderON]
+@="Turn ON Windows Defender"
+"Icon"="imageres.dll,-5321"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\DefenderON\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command \"Start-Process powershell.exe -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-Command','Set-MpPreference -DisableRealtimeMonitoring $false; Set-MpPreference -DisableBehaviorMonitoring $false; Set-MpPreference -DisableIOAVProtection $false; Set-MpPreference -DisableScriptScanning $false; Set-MpPreference -DisableBlockAtFirstSeen $false; Set-MpPreference -DisableOnAccessProtection $false'\""

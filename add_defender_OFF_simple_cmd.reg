@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; Ultra-Simple Defender OFF (using cmd.exe)
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\DefenderOFF_Simple]
+@="Defender OFF (Simple)"
+"Icon"="imageres.dll,-5316"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\DefenderOFF_Simple\command]
+@="cmd.exe /c powershell -ExecutionPolicy Bypass -Command \"Start-Process powershell -Verb RunAs -WindowStyle Hidden -ArgumentList 'Set-MpPreference -DisableRealtimeMonitoring $true -DisableBehaviorMonitoring $true -DisableIOAVProtection $true -DisableScriptScanning $true'\""
